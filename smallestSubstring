@@ -1,0 +1,25 @@
+chars=256
+def max_distinct_char(str, n):
+    cnt=[0]*chars
+    for i in range(n):
+        cnt[ord(str[i])] += 1
+    max_dis=0
+    for i in range(chars):
+        if(cnt[i] != 0):
+            max_dis+=1
+    return max_dis 
+def smallesteSubstr(str):
+    n = len(str)
+    max_dis=max_distinct_char(str, n)
+    minl = n
+    for i in range(n):
+        for j in range(n):
+            sub=str[i:j]
+            sub_len=len(sub)
+            sub_distinct_char = max_distinct_char(sub,sub_len)
+            if (sub_len<minl and max_dis == sub_distinct_char):
+                minl=sub_len
+    return minl
+str1=input()
+l = smallesteSubstr(str1); 
+print(l) 
